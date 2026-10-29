@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Student Registration Form</h2>
+
+    <form onsubmit="return validateForm()">
+        Name: <input type="text" id="name"><br><br>
+        Email: <input type="text" id="email"><br><br>
+        Age: <input type="text" id="age"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let age = document.getElementById("age").value.trim();
+
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (name === "") {
+                alert("Name cannot be empty!");
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email!");
+                return false;
+            }
+
+            if (age === "" || !Number.isFinite(Number(age)) ||
+                Number(age) < 18 || Number(age) > 100) {
+                alert("Age must be a number between 18 and 100!");
+                return false;
+            }
+
+            document.getElementById("result").innerHTML =
+                "Form submitted successfully!";
+            return false;
+        }
+    </script>
+</body>
+</html>
